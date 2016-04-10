@@ -2,21 +2,21 @@ require 'set'
 
 DIGITS = Set.new(0..9)
 
-def solve(n, i: 1, digits: Set.new)
+def digits(i)
+  i.to_s.chars.map(&:to_i)
+end
+
+def solve(n, i: 1, seen_digits: Set.new)
   return 'INSOMNIA' if n.zero?
 
-  n_digits = (n * i).to_s.chars.map(&:to_i)
-
-  new_digits = digits + n_digits
+  new_digits = seen_digits + digits(n * i)
 
   if new_digits == DIGITS
     n * i
   else
-    solve(n, i: i + 1, digits: new_digits)
+    solve(n, i: i + 1, seen_digits: new_digits)
   end
-
 end
-
 
 T = STDIN.gets.to_i
 
