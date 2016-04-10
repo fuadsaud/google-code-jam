@@ -20,8 +20,8 @@ end
 
 T = STDIN.gets.to_i
 
-T.times.collect { |i|
+T.times do |i|
   n = STDIN.gets.chomp.to_i
 
   puts "Case ##{ i + 1 }: #{solve(n)}"
-}
+end
